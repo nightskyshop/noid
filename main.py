@@ -1,0 +1,56 @@
+from flask import Flask, jsonify, request, render_template, send_file
+from flask_cors import CORS
+from werkzeug.utils import secure_filename
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model import PhotoSession
+import qrcode, io, base64, os, uuid
+
+app = Flask(__name__)
+CORS(app)
+
+engine = create_engine('sqlite:///db.db')
+Session = sessionmaker(bind=engine)
+db_session = Session()
+
+@app.route('/session', methods=['POST'])
+def createSession():
+    try:
+        id = str(uuid.uuid4())
+        print(f"id: {id}")
+        time = request.form['time']
+        frame = request.form['frame']
+
+        photo_session = PhotoSession(id=id,time=time, frame=frame)
+        db_session.add(photo_session)
+        db_session.commit()
+
+
+        return jsonify({"sessionID": id})
+    except Exception as e:
+        db_session.rollback()
+        return jsonify({"message": "error", "error": str(e)}), 500
+    finally:
+        db_session.close()
+
+@app.route('/fileupload', methods=['POST'])
+def uploadFile():
+    first = request.files['first']
+    second = request.files['second']
+    third = request.files['third']
+    fourth = request.files['fourth']
+
+    files = [first, second, third, fourth]
+
+    for i in range(len(files)):
+        file = files[i]
+        filename = secure_filename(file.filename)
+        print(f"filename: {filename}")
+        os.makedirs("images", exist_ok=True)
+        file.save(os.path.join("./images", filename))
+    
+    return jsonify({"message": "success" })
+
+if __name__== "__main__":
+	app.debug = True
+	app.run(host="0.0.0.0", port=8000)
