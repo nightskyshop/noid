@@ -46,11 +46,12 @@ def upload():
     except Exception as e:
         return jsonify({'result': False, 'message': '필수 파라미터가 누락되었습니다.'}), 400
 
+    photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
 
-    if not db_session.query(PhotoSession).filter(PhotoSession.id == session).first():
+    if not photoSession:
         return jsonify({'result': False, 'message': '존재하지 않거나 마감된 세션입니다.'}), 400
     
-    user = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
+    
 
     try:
         first = request.files['first']
@@ -79,7 +80,7 @@ def upload():
             return jsonify({'result': False, 'message': f'파일 처리 중 오류가 발생했습니다: {str(e)}'}), 400
 
     try:
-        photo = image.create(data, user.frame, session)
+        photo = image.create(data, photoSession.frame, session)
     except Exception as e:
         return jsonify({'result': False, 'message': f'이미지 처리 중 오류가 발생했습니다: {str(e)}'}), 400
 
@@ -89,15 +90,40 @@ def upload():
     img_io.seek(0)
     img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
 
-    if user:
-        user.qrfile = img_base64
-        user.photofile = photo
+    if photoSession:
+        photoSession.qrfile = img_base64
+        photoSession.photofile = photo
 
     db_session.commit()
 
     return jsonify({'result': True, 'message': '성공적으로 이미지를 업로드하였습니다.', 'qrcode': img_base64, 'photo': photo}), 200
 
+@app.route("/download", methods=["GET"])
+def download():
+    session = request.args.get('session') # http://#DOMAIN/download?session={uuid}
+    if not session:
+        return render_template('forbidden.html')
     
+    photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
+
+    if not photoSession:
+        return render_template('forbidden.html')
+    
+    return render_template('download.html', session=session, image_path=f'./download_image?session={session}')
+
+    
+@app.route('/download_image', methods=["GET"])
+def download_image():
+    session = request.args.get('session')
+    if not session:
+        return render_template('forbidden.html')
+    
+    photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
+
+    if not photoSession:
+        return render_template('forbidden.html')
+    
+    return send_file(f'./images/{session}.png', as_attachment=True)
 
 if __name__== "__main__":
 	app.debug = True
