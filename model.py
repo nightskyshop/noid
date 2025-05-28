@@ -7,7 +7,6 @@ Base = declarative_base()
 class PhotoSession(Base):
     __tablename__ = 'photo_sessions'
     id = Column(String(50), nullable=False, primary_key=True)
-    time = Column(String(50), nullable=False)
     frame = Column(String(50), nullable=False)
     qrfile = Column(String(50), default=None)
     photofile = Column(String(50), default=None)
