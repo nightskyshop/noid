@@ -4,7 +4,9 @@ from werkzeug.utils import secure_filename
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model import PhotoSession
-import qrcode, io, base64, os, uuid
+import qrcode, io, base64, os, uuid, image
+from PIL import Image
+from io import BytesIO
 
 app = Flask(__name__)
 CORS(app)
@@ -45,25 +47,56 @@ def upload():
         return jsonify({'result': False, 'message': '필수 파라미터가 누락되었습니다.'}), 400
 
 
-    if db_session.query(db_session.query.filter(PhotoSession.id == session).exists()).scalar():
+    if not db_session.query(PhotoSession).filter(PhotoSession.id == session).first():
         return jsonify({'result': False, 'message': '존재하지 않거나 마감된 세션입니다.'}), 400
+    
+    user = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
 
-    first = request.files['first']
-    second = request.files['second']
-    third = request.files['third']
-    fourth = request.files['fourth']
+    try:
+        first = request.files['first']
+        second = request.files['second']
+        third = request.files['third']
+        fourth = request.files['fourth']
+    except Exception as e:
+        return jsonify({'result': False, 'message': '필요한 파라미터를 모두 입력해주세요.'}), 400
 
     files = [first, second, third, fourth]
+    data = []
 
     for i in range(len(files)):
         file = files[i]
-        filename = secure_filename(file.filename)
-        print(f"filename: {filename}")
-        os.makedirs("images", exist_ok=True)
-        file.save(os.path.join("./images", filename))
-    
-    return jsonify({"message": "success" })
-    
+        try:
+            file_bytes = file.read()
+            file.seek(0)
+            
+            try:
+                Image.open(BytesIO(file_bytes))
+            except Exception as e:
+                return jsonify({'result': False, 'message': f'유효하지 않은 이미지 파일입니다: {file.filename}'}), 400
+            
+            data.append(base64.b64encode(file_bytes).decode("utf-8"))
+        except Exception as e:
+            return jsonify({'result': False, 'message': f'파일 처리 중 오류가 발생했습니다: {str(e)}'}), 400
+
+    try:
+        photo = image.create(data, user.frame, session)
+    except Exception as e:
+        return jsonify({'result': False, 'message': f'이미지 처리 중 오류가 발생했습니다: {str(e)}'}), 400
+
+    qr = qrcode.make(f"https://localhost:3000/download?session={session}", border=4, box_size=20)
+    img_io = io.BytesIO()
+    qr.save(img_io, 'PNG')
+    img_io.seek(0)
+    img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
+
+    if user:
+        user.qrfile = img_base64
+        user.photofile = photo
+
+    db_session.commit()
+
+    return jsonify({'result': True, 'message': '성공적으로 이미지를 업로드하였습니다.', 'qrcode': img_base64, 'photo': photo}), 200
+
     
 
 if __name__== "__main__":
