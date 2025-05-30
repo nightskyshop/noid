@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Pretendard-Bold";
+  font-style: normal;
+  src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+    format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard-Thin";
+  font-style: normal;
+  src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+    format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard-Light";
+  font-style: normal;
+  src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+    format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  font-style: normal;
+  src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+    format("opentype");
+  font-display: swap;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/vars.css") }}"> <link rel="stylesheet" href="{{
+    url_for('static', filename="./styles/noid_style.css") }}">
+
+    <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+      a,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        background: none;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      menu,
+      ol,
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="div">
+      <div class="rectangle-2"></div>
+      <div class="noid-text">
+        <div class="div3">근본 동아리 프레임!</div>
+        <div class="noid">NOID 프레임을 선택해보세요.</div>
+      </div>
+      <div class="div4">
+        <img
+          class="dankook-b"
+          onclick="location.href='noid_dankook_b'"
+          src="{{ url_for('static', filename='./img/dankook-b0.png') }}"
+        />
+        <img
+          class="dankook-w"
+          onclick="location.href='noid_dankook_w'"
+          src="{{ url_for('static', filename='./img/dankook-w0.png') }}"
+        />
+      </div>
+      <div class="select-page">
+        <div class="rectangle-6"></div>
+        <div class="div5" onclick="location.href='frame'">← 뒤로가기</div>
+      </div>
+    </div>
+  </body>
+</html>

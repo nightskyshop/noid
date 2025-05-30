@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./vars.css" />
+    <link rel="stylesheet" href="./style/static/take_select_photo.css" />
+
+    <style>
+      a,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        background: none;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      menu,
+      ol,
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="div">
+      <div class="rectangle-15"></div>
+      <div class="rectangle-16"></div>
+      <div class="rectangle-17"></div>
+      <div class="rectangle-18"></div>
+      <div class="rectangle-19"></div>
+      <div class="rectangle-20"></div>
+      <div class="rectangle-21"></div>
+      <div class="_4">
+        사진 4개를 선택 후
+        <br />
+        사진뽑기 버튼을 누르세요!
+      </div>
+      <div class="div3">
+        <div class="rectangle-22"></div>
+        <div class="div4" onclick="location.href='index.html'">사진뽑기 →</div>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const photos = JSON.parse(localStorage.getItem('capturedPhotos') || '[]');
+
+        const containers = [
+          document.querySelector('.rectangle-15'),
+          document.querySelector('.rectangle-16'),
+          document.querySelector('.rectangle-17'),
+          document.querySelector('.rectangle-18'),
+          document.querySelector('.rectangle-19'),
+          document.querySelector('.rectangle-20'),
+          document.querySelector('.rectangle-21')
+        ];
+
+        photos.forEach((photo, idx) => {
+          if (containers[idx] && photo) {
+            const img = document.createElement('img');
+            img.src = photo;
+            containers[idx].appendChild(img);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

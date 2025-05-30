@@ -1,0 +1,50 @@
+._1,
+._1 * {
+  box-sizing: border-box;
+}
+._1 {
+  background: #ffffff;
+  height: 982px;
+  position: relative;
+  overflow: hidden;
+}
+.photo-view {
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #333333;
+  border-width: 10px;
+  width: 843px;
+  height: 438px;
+  position: absolute;
+  left: 334px;
+  top: 183px;
+}
+.div {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-8 {
+  background: #3832e9;
+  border-radius: 50px;
+  width: 253.19px;
+  height: 81px;
+  position: absolute;
+  left: 629.81px;
+  top: 718px;
+}
+.div2 {
+  color: #ffffff;
+  text-align: center;
+  font-family: "Pretendard-SemiBold", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  position: absolute;
+  left: 629px;
+  top: 718px;
+  width: 254px;
+  height: 81px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

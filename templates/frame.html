@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/frame_vars.css") }}"> <link rel="stylesheet" href="{{
+    url_for('static', filename="./styles/frame_style.css") }}">
+
+    <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      a,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        background: none;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      menu,
+      ol,
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="div">
+      <div class="div2">
+        <div class="rectangle-2" onclick="location.href='noid_select'"></div>
+        <div class="div4" onclick="location.href='noid_select'">
+          단대소고 근본 동아리 프레임
+        </div>
+
+        <img
+          class="dankook-b"
+          src="{{ url_for('static', filename='./img/dankook-b0.png') }}"
+        />
+        <img
+          class="dankook-w"
+          src="{{ url_for('static', filename='./img/dankook-w0.png') }}"
+        />
+        <div class="dksh-noid" onclick="location.href='noid_select'">
+          DKSH NOID →
+        </div>
+        <div class="rectangle-3" onclick="location.href='ddp_select'"></div>
+        <img
+          class="dwyl"
+          src="{{ url_for('static', filename='./img/dwyl0.png') }}"
+        />
+        <div class="_2025" onclick="location.href='ddp_select'">2025 서울</div>
+        <div class="div5" onclick="location.href='ddp_select'">
+          진로직업박람회 프레임
+        </div>
+        <div class="ddp" onclick="location.href='ddp_select'">DDP →</div>
+        <img
+          class="seoulddp"
+          src="{{ url_for('static', filename='./img/seoulddp0.png') }}"
+        />
+        <div class="rectangle-4" onclick="location.href='n_select'"></div>
+        <img
+          class="green"
+          src="{{ url_for('static', filename='./img/green0.png') }}"
+        />
+        <img
+          class="blue"
+          src="{{ url_for('static', filename='./img/blue0.png') }}"
+        />
+        <div class="div6" onclick="location.href='n_select'">기본 프레임</div>
+        <div class="original" onclick="location.href='n_select'">
+          Original →
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

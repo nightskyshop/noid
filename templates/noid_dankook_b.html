@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/vars.css") }}"> <link rel="stylesheet" href="{{
+    url_for('static', filename="./styles/noid_dankook_b.css") }}">
+
+    <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      a,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        background: none;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      menu,
+      ol,
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="dankook-b">
+      <div class="rectangle-2"></div>
+      <div class="div2">
+        <div class="div2">
+          <div class="rectangle-6"></div>
+          <div class="div3" onclick="location.href='take_photo-1'">
+            인쇄하기
+          </div>
+        </div>
+      </div>
+      <div class="div4">
+        <div class="rectangle-3"></div>
+        <img
+          class="dankook-b2"
+          src="{{ url_for('static', filename='./img/dankook-b0.png') }}"
+        />
+      </div>
+      <div class="select-page">
+        <div class="rectangle-62"></div>
+        <div class="div5" onclick="location.href='noid_select'">← 뒤로가기</div>
+      </div>
+      <div class="div6">
+        <div class="noid-black">NOID BLACK</div>
+        <div class="_1" id="counter">1</div>
+        <div class="div7" id="decrease">-</div>
+        <div class="div8" id="increase">+</div>
+      </div>
+    </div>
+
+    <script>
+      let count = 1;
+
+      const counterEl = document.getElementById("counter");
+      const increaseBtn = document.getElementById("increase");
+      const decreaseBtn = document.getElementById("decrease");
+
+      increaseBtn.addEventListener("click", () => {
+        count++;
+        counterEl.textContent = count;
+      });
+
+      decreaseBtn.addEventListener("click", () => {
+        if (count > 0) {
+          count--;
+          counterEl.textContent = count;
+        }
+      });
+    </script>
+  </body>
+</html>

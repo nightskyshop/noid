@@ -15,7 +15,33 @@ engine = create_engine('sqlite:///db.db')
 Session = sessionmaker(bind=engine)
 db_session = Session()
 
-@app.route('/session', methods=['POST'])
+
+@app.route("/", methods=['GET'])
+def index():
+    return render_template('/index.html')
+
+@app.route("/frame", methods=['GET'])
+def frame():
+    return render_template('/frame.html')
+
+@app.route("/noid_select", methods=['GET'])
+def noid_select():
+    return render_template('/noid_select.html')
+
+@app.route("/noid_dankook_b", methods=['GET'])
+def noid_dankook_b():
+    return render_template('/noid_dankook_b.html')
+
+@app.route("/noid_dankook_w", methods=['GET'])
+def noid_dankook_w():
+    return render_template('/noid_dankook_w.html')
+
+@app.route("/ddp_dwyl", methods=['GET'])
+def ddp_dwyl():
+    return render_template('/ddp_dwyl.html')
+
+
+@app.route("/api/session", methods=['POST'])
 def createSession():
     try:
         frame = request.form['frame']
@@ -38,7 +64,7 @@ def createSession():
     
     
 
-@app.route('/upload', methods=['POST'])
+@app.route("/api/upload", methods=['POST'])
 def upload():
 
     try:
@@ -98,7 +124,7 @@ def upload():
 
     return jsonify({'result': True, 'message': '성공적으로 이미지를 업로드하였습니다.', 'qrcode': img_base64, 'photo': photo}), 200
 
-@app.route("/download", methods=["GET"])
+@app.route("/api/download", methods=["GET"])
 def download():
     session = request.args.get('session') # http://#DOMAIN/download?session={uuid}
     if not session:

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./vars.css" />
+    <link rel="stylesheet" href="./style/static/ddp_dwyl.css" />
+
+    <style>
+      a,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        background: none;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      menu,
+      ol,
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="dwyl">
+      <div class="rectangle-2"></div>
+      <div class="div2">
+        <div class="div2">
+          <div class="rectangle-6"></div>
+          <div class="div3" onclick="location.href='take_photo-1.html'">인쇄하기</div>
+        </div>
+      </div>
+      <div class="div4">
+        <div class="rectangle-3"></div>
+        <img class="dwyl2" src="./img/dwyl0.png" />
+      </div>
+      <div class="select-page">
+        <div class="rectangle-62"></div>
+        <div class="div5" onclick="location.href='ddp_select.html'">← 뒤로가기</div>
+      </div>
+      <div class="div6">
+        <div class="do-what-you-like">DO WHAT YOU LIKE</div>
+        <div class="_1" id="counter">1</div>
+        <div class="div7" id="decrease">-</div>
+        <div class="div8" id="increase">+</div>
+      </div>
+    </div>
+
+    <script>
+      let count = 1;
+    
+      const counterEl = document.getElementById("counter");
+      const increaseBtn = document.getElementById("increase");
+      const decreaseBtn = document.getElementById("decrease");
+    
+      increaseBtn.addEventListener("click", () => {
+        count++;
+        counterEl.textContent = count;
+      });
+    
+      decreaseBtn.addEventListener("click", () => {
+        if (count > 0) {
+          count--;
+          counterEl.textContent = count;
+        }
+      });
+    </script>
+
+  </body>
+</html>

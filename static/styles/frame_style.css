@@ -1,0 +1,221 @@
+.div,
+.div * {
+  box-sizing: border-box;
+}
+.div {
+  background: #ffffff;
+  height: 982px;
+  position: relative;
+  overflow: hidden;
+}
+.div2 {
+  width: 1125px;
+  height: 712px;
+  position: absolute;
+  left: 193px;
+  top: 135px;
+}
+.div3 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-2 {
+  background: #3832e9;
+  border-radius: 50px;
+  width: 100%;
+  height: 51.84%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 48.16%;
+  top: 0%;
+}
+.div4 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Pretendard-Bold", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  position: absolute;
+  left: 86px;
+  top: 139px;
+  width: 454px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.dankook-b {
+  width: 166.59px;
+  height: 246.57px;
+  position: absolute;
+  left: 887.22px;
+  top: -44px;
+  transform-origin: 0 0;
+  transform: rotate(41.76deg) scale(1, 1);
+  object-fit: cover;
+  aspect-ratio: 166.59/246.57;
+}
+.dankook-w {
+  width: 166.59px;
+  height: 246.57px;
+  position: absolute;
+  left: 891.73px;
+  top: 81.12px;
+  transform-origin: 0 0;
+  transform: rotate(41.76deg) scale(1, 1);
+  object-fit: cover;
+  aspect-ratio: 166.59/246.57;
+}
+.dksh-noid {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Pretendard-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  position: absolute;
+  left: 86px;
+  top: 193px;
+  width: 306px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangle-3 {
+  background: #f84949;
+  border-radius: 50px;
+  width: 56.69%;
+  height: 43.61%;
+  position: absolute;
+  right: 43.31%;
+  left: 0%;
+  bottom: 0%;
+  top: 56.39%;
+}
+.dwyl {
+  width: 116.6px;
+  height: 172.57px;
+  position: absolute;
+  left: 353.75px;
+  top: 445.66px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+  object-fit: cover;
+  aspect-ratio: 116.6/172.57;
+}
+._2025 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Pretendard-Bold", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: absolute;
+  left: 46px;
+  top: 499px;
+  width: 200px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div5 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Pretendard-Bold", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: absolute;
+  left: 46px;
+  top: 535px;
+  width: 291px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ddp {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Pretendard-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  position: absolute;
+  left: 46px;
+  top: 578px;
+  width: 200px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.seoulddp {
+  width: 116.6px;
+  height: 172.57px;
+  position: absolute;
+  left: 447.92px;
+  top: 481.49px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+  object-fit: cover;
+  aspect-ratio: 116.6/172.57;
+}
+.rectangle-4 {
+  background: #00bbff;
+  border-radius: 50px;
+  width: 40.8%;
+  height: 43.68%;
+  position: absolute;
+  right: 0%;
+  left: 59.2%;
+  bottom: 0%;
+  top: 56.32%;
+}
+.green {
+  width: 105px;
+  height: 156px;
+  position: absolute;
+  left: 909px;
+  top: 462px;
+  object-fit: cover;
+  aspect-ratio: 105/156;
+}
+.blue {
+  width: 106px;
+  height: 156px;
+  position: absolute;
+  left: 984px;
+  top: 495px;
+  object-fit: cover;
+  aspect-ratio: 106/156;
+}
+.div6 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Pretendard-Bold", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  position: absolute;
+  left: 710px;
+  top: 506px;
+  width: 174px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.original {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Pretendard-Medium", sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  position: absolute;
+  left: 710px;
+  top: 554px;
+  width: 174px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
