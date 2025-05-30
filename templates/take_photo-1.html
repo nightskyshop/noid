@@ -5,9 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="./style/static/take_photo-1.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename="./styles/take_photo-1.css") }}">
 
     <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
       a,
       button,
       input,
@@ -42,7 +73,7 @@
     <div class="_1">
       <div class="photo-view"></div>
       <div class="rectangle-8"></div>
-      <div class="div2" onclick="location.href='take_photo-2.html'">촬영 시작하기 →</div>
+      <div class="div2" onclick="location.href='take_photo-2'">촬영 시작하기 →</div>
     </div>
   </body>
 </html>

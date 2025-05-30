@@ -4,10 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="./style/static/take_select_photo.css" />
+
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/vars.css") }}"> <link rel="stylesheet" href="{{
+    url_for('static', filename="./styles/take_select_photo.css") }}">
 
     <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
       a,
       button,
       input,
@@ -24,7 +58,6 @@
         border: none;
         text-decoration: none;
         background: none;
-
         -webkit-font-smoothing: antialiased;
       }
 
@@ -35,11 +68,42 @@
         margin: 0;
         padding: 0;
       }
+
+      .rectangle-15,
+      .rectangle-16,
+      .rectangle-17,
+      .rectangle-18,
+      .rectangle-19,
+      .rectangle-20,
+      .rectangle-21 {
+        cursor: pointer;
+        overflow: hidden;
+        border: 2px solid transparent;
+        transition: border 0.3s ease;
+      }
+
+      .rectangle-15 img,
+      .rectangle-16 img,
+      .rectangle-17 img,
+      .rectangle-18 img,
+      .rectangle-19 img,
+      .rectangle-20 img,
+      .rectangle-21 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .selected {
+        border: 3px solid #00f;
+      }
     </style>
+
     <title>Document</title>
   </head>
   <body>
     <div class="div">
+      <!-- 사진 이미지 크기 변동필요 -->
       <div class="rectangle-15"></div>
       <div class="rectangle-16"></div>
       <div class="rectangle-17"></div>
@@ -50,34 +114,110 @@
       <div class="_4">
         사진 4개를 선택 후
         <br />
-        사진뽑기 버튼을 누르세요!
+        인쇄하기 버튼을 누르세요!
       </div>
       <div class="div3">
         <div class="rectangle-22"></div>
-        <div class="div4" onclick="location.href='index.html'">사진뽑기 →</div>
+        <div class="div4" onclick="location.href='index'">사진뽑기 →</div>
       </div>
     </div>
 
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const photos = JSON.parse(localStorage.getItem('capturedPhotos') || '[]');
+      const base64toFile = (base_data, filename) => {
+        var arr = base_data.split(","),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]),
+          n = bstr.length,
+          u8arr = new Uint8Array(n);
 
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, { type: mime });
+      };
+
+      const uploadSelectedPhotos = (selectedPhotos) => {
+        const formData = new FormData();
+        formData.append("session", "873e3802-4e99-4dee-ab80-2201564e9f67");
+        console.log(formData);
+        selectedPhotos.forEach((base64, index) => {
+          const file = base64toFile(base64, `photo${index + 1}.png`);
+          formData.append("photo" + (index + 1), file);
+        });
+
+        fetch("/api/upload", {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "multipart/form-data; boundary=<calculated when request is sent>",
+          },
+          body: formData,
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("서버 응답 실패");
+            return response.json();
+          })
+          .then((data) => {
+            alert("업로드 완료!");
+            console.log("서버 응답:", data);
+            // location.href = 'index.html'; //
+            // 예를 들어 #DOMAIN/result?session={} 형태로 리다이렉션
+            // 해당 페이지에 QR코드 및 완성이미지를 SSR
+          })
+          .catch((error) => {
+            console.error("업로드 실패:", error);
+            alert("업로드 중 오류가 발생했습니다.");
+          });
+      };
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const photos = JSON.parse(
+          localStorage.getItem("capturedPhotos") || "[]"
+        );
         const containers = [
-          document.querySelector('.rectangle-15'),
-          document.querySelector('.rectangle-16'),
-          document.querySelector('.rectangle-17'),
-          document.querySelector('.rectangle-18'),
-          document.querySelector('.rectangle-19'),
-          document.querySelector('.rectangle-20'),
-          document.querySelector('.rectangle-21')
+          document.querySelector(".rectangle-15"),
+          document.querySelector(".rectangle-16"),
+          document.querySelector(".rectangle-17"),
+          document.querySelector(".rectangle-18"),
+          document.querySelector(".rectangle-19"),
+          document.querySelector(".rectangle-20"),
+          document.querySelector(".rectangle-21"),
         ];
+        const selectedIndexes = new Set();
 
         photos.forEach((photo, idx) => {
           if (containers[idx] && photo) {
-            const img = document.createElement('img');
+            const img = document.createElement("img");
             img.src = photo;
             containers[idx].appendChild(img);
+
+            containers[idx].addEventListener("click", () => {
+              if (selectedIndexes.has(idx)) {
+                selectedIndexes.delete(idx);
+                containers[idx].classList.remove("selected");
+              } else {
+                if (selectedIndexes.size >= 4) {
+                  alert("최대 4개의 사진만 선택할 수 있습니다.");
+                  return;
+                }
+                selectedIndexes.add(idx);
+                containers[idx].classList.add("selected");
+              }
+            });
           }
+        });
+
+        // "인쇄하기" 버튼 클릭 시
+        document.querySelector(".div4").addEventListener("click", () => {
+          const selectedPhotos = Array.from(selectedIndexes).map(
+            (idx) => photos[idx]
+          );
+          if (selectedPhotos.length !== 4) {
+            alert("정확히 4개의 사진을 선택해야 합니다.");
+            return;
+          }
+          uploadSelectedPhotos(selectedPhotos); // 서버로 전송
         });
       });
     </script>

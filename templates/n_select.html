@@ -5,9 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="./style/static/n_c_style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename="./styles/n_c_style.css") }}">
 
     <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
       a,
       button,
       input,
@@ -46,11 +77,15 @@
         <div class="original">Original 프레임을 선택해보세요.</div>
       </div>
       <div class="div4">
-        <img class="blue" onclick="location.href='n_blue.html'" src="img/blue0.png" />
-        <img class="green" onclick="location.href='n_green.html'" src="img/green0.png" />
+        <img class="blue"
+        onclick="location.href='n_blue'"
+        src="{{ url_for('static', filename="./img/blue0.png") }}" />
+        <img class="green"
+        onclick="location.href='n_green'"
+        src="{{ url_for('static', filename="./img/green0.png") }}" />
       </div>
       <div class="rectangle-6"></div>
-      <button class="div5" onclick="location.href='frame.html'">← 뒤로가기</div>
+      <button class="div5" onclick="location.href='frame'">← 뒤로가기</div>
     </div>
   </body>
 </html>

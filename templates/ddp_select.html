@@ -5,9 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="./style/static/ddp_style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename="./styles/ddp_style.css") }}">
 
     <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
       a,
       button,
       input,
@@ -46,12 +77,12 @@
         <div class="ddp">DDP 프레임을 선택해보세요.</div>
       </div>
       <div class="div3">
-        <img class="dwyl" onclick="location.href='ddp_dwyl.html'" src="./img/dwyl0.png" />
-        <img class="seoulddp" onclick="location.href='ddp_seoul.html'" src="./img/seoulddp0.png" />
+        <img class="dwyl" onclick="location.href='ddp_dwyl'" src="{{ url_for('static', filename="./img/dwyl0.png") }}" />
+        <img class="seoulddp" onclick="location.href='ddp_seoul'" src="{{ url_for('static', filename="./img/seoulddp0.png") }}" />
       </div>
       <div class="select-page">
         <div class="rectangle-6"></div>
-        <div class="div4" onclick="location.href='frame.html'">← 뒤로가기</div>
+        <div class="div4" onclick="location.href='frame'">← 뒤로가기</div>
       </div>
     </div>
   </body>

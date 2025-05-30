@@ -4,10 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="./style/static/take_photo-2.css" />
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/vars.css") }}"> <link rel="stylesheet" href="{{
+    url_for('static', filename="./styles/take_photo-2.css") }}">
 
     <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
       a,
       button,
       input,
@@ -60,7 +93,12 @@
       }
 
       /* p-1 ~ p-6 스타일 미리보기용 */
-      .p-1, .p-2, .p-3, .p-4, .p-5, .p-6 {
+      .p-1,
+      .p-2,
+      .p-3,
+      .p-4,
+      .p-5,
+      .p-6 {
         width: 120px;
         height: 90px;
         margin: 5px;
@@ -102,78 +140,90 @@
       <div class="p-6"></div>
 
       <div class="rectangle-8"></div>
-      <div class="div2" onclick="location.href='take_select_photo.html'">계속하기 →</div>
+      <div class="div2" onclick="location.href='take_select_photo'">
+        계속하기 →
+      </div>
     </div>
 
-<!-- 기존 코드 중 script 부분만 수정 예시 -->
-<script>
-  const video = document.getElementById('video');
-  const counter = document.getElementById('counter');
-  const photoDivs = [
-    document.querySelector('.p-1'),
-    document.querySelector('.p-2'),
-    document.querySelector('.p-3'),
-    document.querySelector('.p-4'),
-    document.querySelector('.p-5'),
-    document.querySelector('.p-6'),
-  ];
+    <!-- 기존 코드 중 script 부분만 수정 예시 -->
+    <script>
+      const video = document.getElementById("video");
+      const counter = document.getElementById("counter");
+      const photoDivs = [
+        document.querySelector(".p-1"),
+        document.querySelector(".p-2"),
+        document.querySelector(".p-3"),
+        document.querySelector(".p-4"),
+        document.querySelector(".p-5"),
+        document.querySelector(".p-6"),
+      ];
 
-  let photosTaken = 0;
-  let capturedPhotos = []; // 여기서 사진 저장
+      let photosTaken = 0;
+      let capturedPhotos = []; // 여기서 사진 저장
 
-  navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then((stream) => {
-      video.srcObject = stream;
-    })
-    .catch((err) => {
-      console.error('카메라 접근 실패:', err);
-      counter.innerText = '카메라 접근 실패';
-    });
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+          video.srcObject = stream;
+        })
+        .catch((err) => {
+          console.error("카메라 접근 실패:", err);
+          counter.innerText = "카메라 접근 실패";
+        });
 
-  function takePhoto() {
-    if (photosTaken >= 6) {
-      counter.innerText = '촬영 완료! 저장 중...';
-      // 촬영이 끝나면 localStorage에 저장
-      localStorage.setItem('capturedPhotos', JSON.stringify(capturedPhotos));
-      return;
-    }
+      function takePhoto() {
+        if (photosTaken >= 6) {
+          counter.innerText = "촬영 완료! 저장 중...";
+          // 촬영이 끝나면 localStorage에 저장
+          localStorage.setItem(
+            "capturedPhotos",
+            JSON.stringify(capturedPhotos)
+          );
+          return;
+        }
 
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext("2d");
 
-    const dataURL = canvas.toDataURL('image/png');
-    capturedPhotos.push(dataURL);  // 사진 저장
+        // 좌우반전
+        ctx.translate(canvas.width, 0);
+        ctx.scale(-1, 1);
 
-    const img = document.createElement('img');
-    img.src = dataURL;
-    photoDivs[photosTaken].innerHTML = '';
-    photoDivs[photosTaken].appendChild(img);
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    photosTaken++;
+        const dataURL = canvas.toDataURL("image/png");
+        capturedPhotos.push(dataURL); // 사진 저장
 
-    if (photosTaken < 6) {
-      counter.innerText = `📸 ${photosTaken + 1}번째 촬영 준비 중...`;
+        const img = document.createElement("img");
+        img.src = dataURL;
+        photoDivs[photosTaken].innerHTML = "";
+        photoDivs[photosTaken].appendChild(img);
+
+        photosTaken++;
+
+        if (photosTaken < 6) {
+          counter.innerText = `📸 ${photosTaken + 1}번째 촬영 준비 중...`;
+          setTimeout(() => {
+            counter.innerText = `📸 ${photosTaken}번째 촬영 중...`;
+            takePhoto();
+          }, 4000);
+        } else {
+          counter.innerText = "촬영 완료! 저장 중...";
+          // 여기서도 저장 한번 더 안전하게
+          localStorage.setItem(
+            "capturedPhotos",
+            JSON.stringify(capturedPhotos)
+          );
+        }
+      }
+
+      // 5초 대기 후 촬영 시작
       setTimeout(() => {
-        counter.innerText = `📸 ${photosTaken}번째 촬영 중...`;
+        counter.innerText = "📸 첫 번째 촬영 중...";
         takePhoto();
-      }, 4000);
-    } else {
-      counter.innerText = '촬영 완료! 저장 중...';
-      // 여기서도 저장 한번 더 안전하게
-      localStorage.setItem('capturedPhotos', JSON.stringify(capturedPhotos));
-    }
-  }
-
-  // 5초 대기 후 촬영 시작
-  setTimeout(() => {
-    counter.innerText = '📸 첫 번째 촬영 중...';
-    takePhoto();
-  }, 5000);
-</script>
-
+      }, 5000);
+    </script>
   </body>
 </html>

@@ -5,9 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="./style/static/n_blue.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename="./styles/n_blue.css") }}">
 
     <style>
+      @font-face {
+        font-family: "Pretendard-Bold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Bold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Thin";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Thin.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-Light";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-Light.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Pretendard-SemiBold";
+        font-style: normal;
+        src: url("{{ url_for('static', filename='./fonts/Pretendard-SemiBold.otf') }}")
+          format("opentype");
+        font-display: swap;
+      }
       a,
       button,
       input,
@@ -44,16 +75,16 @@
       <div class="div2">
         <div class="div2">
           <div class="rectangle-6"></div>
-          <div class="div3" onclick="location.href='take_photo-1.html'">인쇄하기</div>
+          <div class="div3" onclick="location.href='take_photo-1'">인쇄하기</div>
         </div>
       </div>
       <div class="div4">
         <div class="rectangle-3"></div>
-        <img class="blue2" src="./img/blue0.png" />
+        <img class="blue2" src="{{ url_for('static', filename="./img/blue0.png") }}" />
       </div>
       <div class="select-page">
         <div class="rectangle-62"></div>
-        <div class="div5" onclick="location.href='n_select.html'">← 뒤로가기</div>
+        <div class="div5" onclick="location.href='n_select'">← 뒤로가기</div>
       </div>
       <div class="div6">
         <div class="blue3">BLUE</div>

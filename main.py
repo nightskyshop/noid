@@ -40,6 +40,41 @@ def noid_dankook_w():
 def ddp_dwyl():
     return render_template('/ddp_dwyl.html')
 
+@app.route("/ddp_select", methods=['GET'])
+def ddp_select():
+    return render_template('/ddp_select.html')
+
+@app.route("/ddp_seoul", methods=['GET'])
+def ddp_seoul():
+    return render_template('/ddp_seoul.html')
+
+@app.route("/n_select", methods=['GET'])
+def n_select():
+    return render_template('/n_select.html')
+
+@app.route("/n_green", methods=['GET'])
+def n_green():
+    return render_template('/n_green.html')
+
+@app.route("/n_blue", methods=['GET'])
+def n_blue():
+    return render_template('/n_blue.html')
+
+@app.route("/take_photo-1", methods=['GET'])
+def take_photo_1():
+    return render_template('/take_photo-1.html')
+
+@app.route("/take_photo-2", methods=['GET'])
+def take_photo_2():
+    return render_template('/take_photo-2.html')
+
+@app.route("/take_select_photo", methods=['GET'])
+def take_select_photo():
+    return render_template('/take_select_photo.html')
+
+@app.route("/forbidden", methods=['GET'])
+def forbidden():
+    return render_template('/forbidden.html')
 
 @app.route("/api/session", methods=['POST'])
 def createSession():
@@ -70,7 +105,7 @@ def upload():
     try:
         session = request.form['session']
     except Exception as e:
-        return jsonify({'result': False, 'message': '필수 파라미터가 누락되었습니다.'}), 400
+        return jsonify({'result': False, 'message': '필수 파라미터 session이 누락되었습니다.'}), 400
 
     photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
 
@@ -80,12 +115,13 @@ def upload():
     
 
     try:
-        first = request.files['first']
-        second = request.files['second']
-        third = request.files['third']
-        fourth = request.files['fourth']
+        first = request.files['photo1']
+        second = request.files['photo2']
+        third = request.files['photo3']
+        fourth = request.files['photo4']
     except Exception as e:
-        return jsonify({'result': False, 'message': '필요한 파라미터를 모두 입력해주세요.'}), 400
+        print(e)
+        return jsonify({'result': False, 'message': '필요한 파라미터 photo가 누락되었습니다.'}), 400
 
     files = [first, second, third, fourth]
     data = []
@@ -138,7 +174,7 @@ def download():
     return render_template('download.html', session=session, image_path=f'./download_image?session={session}')
 
     
-@app.route('/download_image', methods=["GET"])
+@app.route('/api/download_image', methods=["GET"])
 def download_image():
     session = request.args.get('session')
     if not session:
