@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename="./styles/n_green.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/n_green.css") }}">
 
     <style>
       @font-face {
@@ -75,12 +76,15 @@
       <div class="div2">
         <div class="div2">
           <div class="rectangle-6"></div>
-          <div class="div3" onclick="location.href='take_photo-1'">인쇄하기</div>
+          <div class="div3" onclick="location.href='take_photo-1?frame=green'">
+            인쇄하기
+          </div>
         </div>
       </div>
       <div class="div4">
         <div class="rectangle-3"></div>
-        <img class="green2" src="{{ url_for('static', filename="./img/green0.png") }}" />
+        <img class="green2" src="{{ url_for('static',
+        filename="./img/green0.png") }}" />
       </div>
       <div class="select-page">
         <div class="rectangle-62"></div>
@@ -95,25 +99,23 @@
     </div>
 
     <script>
-        let count = 1;
-      
-        const counterEl = document.getElementById("counter");
-        const increaseBtn = document.getElementById("increase");
-        const decreaseBtn = document.getElementById("decrease");
-      
-        increaseBtn.addEventListener("click", () => {
-          count++;
-          counterEl.textContent = count;
-        });
-      
-        decreaseBtn.addEventListener("click", () => {
-          if (count > 0) {
-            count--;
-            counterEl.textContent = count;
-          }
-        });
-      </script>
-      
+      let count = 1;
 
+      const counterEl = document.getElementById("counter");
+      const increaseBtn = document.getElementById("increase");
+      const decreaseBtn = document.getElementById("decrease");
+
+      increaseBtn.addEventListener("click", () => {
+        count++;
+        counterEl.textContent = count;
+      });
+
+      decreaseBtn.addEventListener("click", () => {
+        if (count > 0) {
+          count--;
+          counterEl.textContent = count;
+        }
+      });
+    </script>
   </body>
 </html>

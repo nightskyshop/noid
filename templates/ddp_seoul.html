@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename="./styles/ddp_seoul.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/ddp_seoul.css") }}">
 
     <style>
       @font-face {
@@ -75,12 +76,18 @@
       <div class="div2">
         <div class="div2">
           <div class="rectangle-6"></div>
-          <div class="div3" onclick="location.href='take_photo-1'">인쇄하기</div>
+          <div
+            class="div3"
+            onclick="location.href='take_photo-1?frame=seoulddp'"
+          >
+            인쇄하기
+          </div>
         </div>
       </div>
       <div class="div4">
         <div class="rectangle-3"></div>
-        <img class="seoulddp2" src="{{ url_for('static', filename="./img/seoulddp0.png") }}" />
+        <img class="seoulddp2" src="{{ url_for('static',
+        filename="./img/seoulddp0.png") }}" />
       </div>
       <div class="select-page">
         <div class="rectangle-62"></div>

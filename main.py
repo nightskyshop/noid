@@ -101,6 +101,7 @@ def createSession():
 
 @app.route("/api/upload", methods=['POST'])
 def upload():
+    print(request.form)
 
     try:
         session = request.form['session']

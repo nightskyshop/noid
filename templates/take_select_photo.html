@@ -118,7 +118,7 @@
       </div>
       <div class="div3">
         <div class="rectangle-22"></div>
-        <div class="div4" onclick="location.href='index'">사진뽑기 →</div>
+        <div class="div4">사진뽑기 →</div>
       </div>
     </div>
 
@@ -139,19 +139,20 @@
 
       const uploadSelectedPhotos = (selectedPhotos) => {
         const formData = new FormData();
-        formData.append("session", "873e3802-4e99-4dee-ab80-2201564e9f67");
-        console.log(formData);
+        formData.append("session", localStorage.getItem("session"));
+
+        console.log("formData: ", formData.get("session"));
+
         selectedPhotos.forEach((base64, index) => {
           const file = base64toFile(base64, `photo${index + 1}.png`);
           formData.append("photo" + (index + 1), file);
         });
 
+        console.log("formData: ", formData.get("session"));
+        console.log("formData: ", formData.get("photo1"));
+
         fetch("/api/upload", {
           method: "POST",
-          headers: {
-            "Content-Type":
-              "multipart/form-data; boundary=<calculated when request is sent>",
-          },
           body: formData,
         })
           .then((response) => {
@@ -161,11 +162,15 @@
           .then((data) => {
             alert("업로드 완료!");
             console.log("서버 응답:", data);
+            window.location.href =
+              "http://127.0.0.1:8000/api/download?session=" +
+              localStorage.getItem("session");
             // location.href = 'index.html'; //
             // 예를 들어 #DOMAIN/result?session={} 형태로 리다이렉션
             // 해당 페이지에 QR코드 및 완성이미지를 SSR
           })
           .catch((error) => {
+            console.log("formData: ", formData.get("session"));
             console.error("업로드 실패:", error);
             alert("업로드 중 오류가 발생했습니다.");
           });

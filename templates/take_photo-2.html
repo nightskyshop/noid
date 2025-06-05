@@ -222,6 +222,28 @@
       // 5초 대기 후 촬영 시작
       setTimeout(() => {
         counter.innerText = "📸 첫 번째 촬영 중...";
+
+        const formData = new FormData();
+        formData.append("frame", "{{request.args.get("frame")}}");
+
+        fetch("/api/session", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("서버 응답 실패");
+            return response.json();
+          })
+          .then((data) => {
+            console.log("서버 응답:", data);
+            localStorage.setItem("session", data.sessionID);
+          })
+          .catch((error) => {
+            console.log("formData: ", formData.get("session"));
+            console.error("업로드 실패:", error);
+            alert("session 생성 중 오류 발생.");
+          });
+
         takePhoto();
       }, 5000);
     </script>

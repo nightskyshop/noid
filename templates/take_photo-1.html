@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename="./styles/take_photo-1.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename="./styles/take_photo-1.css") }}">
 
     <style>
       @font-face {
@@ -73,8 +74,12 @@
     <div class="_1">
       <div class="photo-view"></div>
       <div class="rectangle-8"></div>
-      <div class="div2" onclick="location.href='take_photo-2'">촬영 시작하기 →</div>
+      <div
+        class="div2"
+        onclick="location.href='take_photo-2?frame={{ request.args.get('frame') }}'"
+      >
+        촬영 시작하기 →
+      </div>
     </div>
   </body>
 </html>
-
