@@ -182,10 +182,19 @@
           return;
         }
 
-        const canvas = document.createElement("canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext("2d");
+        // Updated upstream
+        // const canvas = document.createElement("canvas");
+        // canvas.width = video.videoWidth;
+        // canvas.height = video.videoHeight;
+        // const ctx = canvas.getContext("2d");
+
+    // Stashed changes    
+    const canvas = document.createElement('canvas');
+    canvas.width = 500;
+    canvas.height = 650;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
 
         // 좌우반전
         ctx.translate(canvas.width, 0);

@@ -3,15 +3,18 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model import PhotoSession
+from model import PhotoSession, Base #Base 추가함.
 import qrcode, io, base64, os, uuid, image
 from PIL import Image
 from io import BytesIO
 
+
 app = Flask(__name__)
 CORS(app)
 
+# 테이블 생성 코드 추가함. (이게 무슨 뻘짓이야 라고 생각되면 그냥 바로 삭제요망)
 engine = create_engine('sqlite:///db.db')
+Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 db_session = Session()
 
@@ -91,6 +94,7 @@ def createSession():
             return jsonify({"sessionID": id})
         except Exception as e:
             db_session.rollback()
+            print("createSession error : ", e)
             return jsonify({"message": "error", "error": str(e)}), 500
         finally:
             db_session.close()

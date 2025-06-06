@@ -12,53 +12,59 @@
   position: absolute;
   inset: 0;
 }
-.rectangle-15 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 104px;
-  top: 213px;
-}
-.rectangle-16 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 104px;
-  top: 520px;
-}
-.rectangle-17 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 393px;
-  top: 213px;
-}
-.rectangle-18 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 393px;
-  top: 520px;
-}
-.rectangle-19 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 682px;
-  top: 213px;
-}
+.rectangle-15,
+.rectangle-16,
+.rectangle-17,
+.rectangle-18,
+.rectangle-19,
 .rectangle-20 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
   position: absolute;
-  left: 682px;
-  top: 520px;
+  width: 250px;      
+  height: 250px;     
+  background: #d9d9d9; 
+  overflow: hidden;    
+}
+
+.rectangle-15 {
+  left: 7.4%;
+  top: 21.7%;
+}
+
+.rectangle-17 {
+  left: calc(7.4% + 250px + 39px); 
+  top: 21.7%;
+}
+
+.rectangle-19 {
+  left: calc(7.4% + 2 * (250px + 39px));
+  top: 21.7%;
+}
+
+.rectangle-16 {
+  left: 7.4%;
+  top: calc(21.7% + 250px + 57px);
+}
+
+.rectangle-18 {
+  left: calc(7.4% + 250px + 39px);
+  top: calc(21.7% + 250px + 57px);
+}
+
+.rectangle-20 {
+  left: calc(7.4% + 2 * (250px + 39px));
+  top: calc(21.7% + 250px + 57px);
+}
+.rectangle-15 img,
+.rectangle-16 img,
+.rectangle-17 img,
+.rectangle-18 img,
+.rectangle-19 img,
+.rectangle-20 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 .rectangle-21 {
   background: #3832e9;
