@@ -12,72 +12,32 @@
   position: absolute;
   inset: 0;
 }
-.p-1 {
-  background: #d9d9d9;
-  width: 189px;
-  height: 182px;
-  position: absolute;
-  left: 110px;
-  top: 598px;
+.container {
+  display: flex;
+  gap: 1em;
+  width: 900px;
+  margin: 3em auto;
 }
-.p-2 {
+.container > div {
   background: #d9d9d9;
   width: 189px;
   height: 182px;
-  position: absolute;
-  left: 330px;
-  top: 598px;
-}
-.p-3 {
-  background: #d9d9d9;
-  width: 189px;
-  height: 182px;
-  position: absolute;
-  left: 551px;
-  top: 598px;
-}
-.p-4 {
-  background: #d9d9d9;
-  width: 189px;
-  height: 182px;
-  position: absolute;
-  left: 771px;
-  top: 598px;
-}
-.p-5 {
-  background: #d9d9d9;
-  width: 189px;
-  height: 182px;
-  position: absolute;
-  left: 992px;
-  top: 598px;
-}
-.p-6 {
-  background: #d9d9d9;
-  width: 189px;
-  height: 182px;
-  position: absolute;
-  left: 1212px;
-  top: 598px;
 }
 .photo-view {
   border-radius: 20px;
   border-style: solid;
   border-color: #333333;
   border-width: 10px;
-  width: 843px;
-  height: 438px;
-  position: absolute;
-  left: 334px;
-  top: 83px;
+  width: 400px;
+  height: 520px;
+  margin: 183px auto 0;
 }
-
 #video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 520px;
   object-fit: cover;
 }
 
@@ -105,4 +65,3 @@
   align-items: center;
   justify-content: center;
 }
-

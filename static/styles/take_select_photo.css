@@ -1,73 +1,36 @@
-.div,
-.div * {
-  box-sizing: border-box;
-}
 .div {
   background: #ffffff;
-  height: 982px;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  max-width: 1200px;
+  margin: 9em auto;
+  justify-content: space-between;
 }
 .div2 {
   position: absolute;
   inset: 0;
 }
-.rectangle-15 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 104px;
-  top: 213px;
+.container {
+  width: 700px;
+  display: grid;
+  grid-auto-rows: 300px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: auto;
 }
-.rectangle-16 {
+.container > div {
   background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 104px;
-  top: 520px;
-}
-.rectangle-17 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 393px;
-  top: 213px;
-}
-.rectangle-18 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 393px;
-  top: 520px;
-}
-.rectangle-19 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 682px;
-  top: 213px;
-}
-.rectangle-20 {
-  background: #d9d9d9;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  left: 682px;
-  top: 520px;
+  width: 180px;
+  height: 234px;
+  margin: 1em;
 }
 .rectangle-21 {
   background: #3832e9;
   border-radius: 20px;
   width: 441px;
   height: 558px;
-  position: absolute;
-  left: 967px;
-  top: 212px;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  justify-content: center;
 }
 ._4 {
   color: #ffffff;
@@ -75,9 +38,6 @@
   font-family: "Pretendard-SemiBold", sans-serif;
   font-size: 32px;
   font-weight: 600;
-  position: absolute;
-  left: 967px;
-  top: 400px;
   width: 441px;
   height: 63px;
   display: flex;
@@ -87,16 +47,13 @@
 .div3 {
   width: 277px;
   height: 89px;
-  position: static;
+  margin: 0 auto;
 }
 .rectangle-22 {
   background: #ffffff;
   border-radius: 50px;
   width: 277px;
   height: 86px;
-  position: absolute;
-  left: 1049px;
-  top: 559px;
 }
 .div4 {
   color: #000000;
@@ -104,11 +61,8 @@
   font-family: "Pretendard-SemiBold", sans-serif;
   font-size: 32px;
   font-weight: 600;
-  position: absolute;
-  left: 1049px;
-  top: 556px;
-  width: 277px;
-  height: 89px;
+  position: relative;
+  top: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
