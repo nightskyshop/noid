@@ -1,79 +1,36 @@
-.div,
-.div * {
-  box-sizing: border-box;
-}
 .div {
   background: #ffffff;
-  height: 982px;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  max-width: 1200px;
+  margin: 9em auto;
+  justify-content: space-between;
 }
 .div2 {
   position: absolute;
   inset: 0;
 }
-.rectangle-15,
-.rectangle-16,
-.rectangle-17,
-.rectangle-18,
-.rectangle-19,
-.rectangle-20 {
-  position: absolute;
-  width: 250px;      
-  height: 250px;     
-  background: #d9d9d9; 
-  overflow: hidden;    
+.container {
+  width: 700px;
+  display: grid;
+  grid-auto-rows: 300px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: auto;
 }
-
-.rectangle-15 {
-  left: 7.4%;
-  top: 21.7%;
-}
-
-.rectangle-17 {
-  left: calc(7.4% + 250px + 39px); 
-  top: 21.7%;
-}
-
-.rectangle-19 {
-  left: calc(7.4% + 2 * (250px + 39px));
-  top: 21.7%;
-}
-
-.rectangle-16 {
-  left: 7.4%;
-  top: calc(21.7% + 250px + 57px);
-}
-
-.rectangle-18 {
-  left: calc(7.4% + 250px + 39px);
-  top: calc(21.7% + 250px + 57px);
-}
-
-.rectangle-20 {
-  left: calc(7.4% + 2 * (250px + 39px));
-  top: calc(21.7% + 250px + 57px);
-}
-.rectangle-15 img,
-.rectangle-16 img,
-.rectangle-17 img,
-.rectangle-18 img,
-.rectangle-19 img,
-.rectangle-20 img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+.container > div {
+  background: #d9d9d9;
+  width: 180px;
+  height: 234px;
+  margin: 1em;
 }
 .rectangle-21 {
   background: #3832e9;
   border-radius: 20px;
   width: 441px;
   height: 558px;
-  position: absolute;
-  left: 967px;
-  top: 212px;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  justify-content: center;
 }
 ._4 {
   color: #ffffff;
@@ -81,9 +38,6 @@
   font-family: "Pretendard-SemiBold", sans-serif;
   font-size: 32px;
   font-weight: 600;
-  position: absolute;
-  left: 967px;
-  top: 400px;
   width: 441px;
   height: 63px;
   display: flex;
@@ -93,16 +47,13 @@
 .div3 {
   width: 277px;
   height: 89px;
-  position: static;
+  margin: 0 auto;
 }
 .rectangle-22 {
   background: #ffffff;
   border-radius: 50px;
   width: 277px;
   height: 86px;
-  position: absolute;
-  left: 1049px;
-  top: 559px;
 }
 .div4 {
   color: #000000;
@@ -110,11 +61,8 @@
   font-family: "Pretendard-SemiBold", sans-serif;
   font-size: 32px;
   font-weight: 600;
-  position: absolute;
-  left: 1049px;
-  top: 556px;
-  width: 277px;
-  height: 89px;
+  position: relative;
+  top: 25px;
   display: flex;
   align-items: center;
   justify-content: center;

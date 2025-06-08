@@ -13,24 +13,21 @@
   border-style: solid;
   border-color: #333333;
   border-width: 10px;
-  width: 843px;
-  height: 438px;
-  position: absolute;
-  left: 334px;
-  top: 183px;
+  width: 400px;
+  height: 520px;
+  margin: 183px auto 0;
 }
 .div {
   position: absolute;
   inset: 0;
 }
 .rectangle-8 {
+  display: block;
   background: #3832e9;
   border-radius: 50px;
   width: 253.19px;
   height: 81px;
-  position: absolute;
-  left: 629.81px;
-  top: 718px;
+  margin: 3em auto;
 }
 .div2 {
   color: #ffffff;
@@ -38,13 +35,9 @@
   font-family: "Pretendard-SemiBold", sans-serif;
   font-size: 24px;
   font-weight: 600;
-  position: absolute;
-  left: 629px;
-  top: 718px;
   width: 254px;
   height: 81px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-

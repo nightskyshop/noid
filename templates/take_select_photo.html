@@ -68,8 +68,6 @@
         margin: 0;
         padding: 0;
       }
-
-/* <<<<<<< Updated upstream
       .rectangle-15,
       .rectangle-16,
       .rectangle-17,
@@ -78,35 +76,26 @@
       .rectangle-20,
       .rectangle-21 {
         cursor: pointer;
-        overflow: hidden;
         border: 2px solid transparent;
         transition: border 0.3s ease;
-      } */
+      }
 
- /* Stashed changes */
+      .selected {
+        border: 3px solid #00f;
+      }
+
       .rectangle-15 img,
       .rectangle-16 img,
       .rectangle-17 img,
       .rectangle-18 img,
       .rectangle-19 img,
-/* <<<<<<< Updated upstream
       .rectangle-20 img,
       .rectangle-21 img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-      }
-
-      .selected {
-        border: 3px solid #00f; */
-
-      .rectangle-20 img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
         object-position: center;
         display: block;
-
       }
     </style>
 
@@ -115,21 +104,25 @@
   <body>
     <div class="div">
       <!-- 사진 이미지 크기 변동필요 -->
-      <div class="rectangle-15"></div>
-      <div class="rectangle-16"></div>
-      <div class="rectangle-17"></div>
-      <div class="rectangle-18"></div>
-      <div class="rectangle-19"></div>
-      <div class="rectangle-20"></div>
-      <div class="rectangle-21"></div>
-      <div class="_4">
-        사진 4개를 선택 후
-        <br />
-        인쇄하기 버튼을 누르세요!
+      <div class="container">
+        <div class="rectangle-15"></div>
+        <div class="rectangle-16"></div>
+        <div class="rectangle-17"></div>
+        <div class="rectangle-18"></div>
+        <div class="rectangle-19"></div>
+        <div class="rectangle-20"></div>
       </div>
-      <div class="div3">
-        <div class="rectangle-22"></div>
-        <div class="div4">사진뽑기 →</div>
+      <div class="rectangle-21">
+        <div class="_4">
+          사진 4개를 선택 후
+          <br />
+          인쇄하기 버튼을 누르세요!
+        </div>
+        <div class="div3">
+          <div class="rectangle-22">
+            <div class="div4">사진뽑기 →</div>
+          </div>
+        </div>
       </div>
     </div>
 

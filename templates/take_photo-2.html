@@ -74,7 +74,8 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        height: 360px; /* 원하는 높이 조절 */
+        width: 400px;
+        height: 520px; /* 원하는 높이 조절 */
         margin-top: 10px;
       }
 
@@ -128,16 +129,18 @@
       <div class="counter" id="counter">잠시만 기다려 주세요...</div>
 
       <div class="photo-view">
-        <video id="video" autoplay></video>
+        <video id="video" autoplay width="500" height="650"></video>
       </div>
 
       <!-- 사진 미리보기 박스 -->
-      <div class="p-1"></div>
-      <div class="p-2"></div>
-      <div class="p-3"></div>
-      <div class="p-4"></div>
-      <div class="p-5"></div>
-      <div class="p-6"></div>
+      <div class="container">
+        <div class="p-1"></div>
+        <div class="p-2"></div>
+        <div class="p-3"></div>
+        <div class="p-4"></div>
+        <div class="p-5"></div>
+        <div class="p-6"></div>
+      </div>
 
       <div class="rectangle-8"></div>
       <div class="div2" onclick="location.href='take_select_photo'">
@@ -182,25 +185,38 @@
           return;
         }
 
-        // Updated upstream
-        // const canvas = document.createElement("canvas");
-        // canvas.width = video.videoWidth;
-        // canvas.height = video.videoHeight;
-        // const ctx = canvas.getContext("2d");
+        const canvas = document.createElement('canvas');
+        const targetRatio = 10/13;
 
-    // Stashed changes    
-    const canvas = document.createElement('canvas');
-    canvas.width = 500;
-    canvas.height = 650;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        let canvasWidth, canvasHeight;
+        if (video.videoWidth / video.videoHeight > targetRatio) {
+            // 비디오가 더 넓은 경우
+            canvasHeight = video.videoHeight;
+            canvasWidth = canvasHeight * targetRatio;
+        } else {
+            // 비디오가 더 좁은 경우
+            canvasWidth = video.videoWidth;
+            canvasHeight = canvasWidth / targetRatio;
+        }
 
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        const ctx = canvas.getContext('2d');
+
+        const sourceX = (video.videoWidth - canvasWidth) / 2;
+        const sourceY = (video.videoHeight - canvasHeight) / 2;
 
         // 좌우반전
         ctx.translate(canvas.width, 0);
         ctx.scale(-1, 1);
 
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(
+            video,
+            sourceX, sourceY,          // 원본 이미지에서 자를 시작점 (중앙)
+            canvasWidth, canvasHeight, // 원본 이미지에서 자를 크기
+            0, 0,                      // 캔버스에 그릴 시작점
+            canvasWidth, canvasHeight, // 캔버스에 그릴 크기
+        );
 
         const dataURL = canvas.toDataURL("image/png");
         capturedPhotos.push(dataURL); // 사진 저장
