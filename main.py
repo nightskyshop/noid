@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, send_file
+from flask import Flask, jsonify, request, render_template, send_file, make_response
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from sqlalchemy import create_engine
@@ -18,9 +18,23 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 db_session = Session()
 
+CRYPTION_TOKEN = "8krybwTfjJEIFq8J50CfEJlyFMlxYNl04pZDcgXKPz8pY3E362"
+
+@app.route("/cryption_device", methods=["GET"])
+def cryption_device():
+    password = request.args.get('password')
+    if password == "@noid!LifeFourCuts!AdminPassWORD!REGISTERdevice@":
+        resp = make_response("쿠키 설정됨")
+        resp.set_cookie('auth_token', CRYPTION_TOKEN, max_age=60*60*24*30)
+        return resp
+    else:
+        return render_template("forbidden.html")
 
 @app.route("/", methods=['GET'])
 def index():
+    #if request.cookies.get('auth_token') != CRYPTION_TOKEN:
+    #    return render_template('forbidden.html')
+
     return render_template('/index.html')
 
 @app.route("/frame", methods=['GET'])
