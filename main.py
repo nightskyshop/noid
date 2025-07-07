@@ -165,6 +165,19 @@ def upload():
 
     return jsonify({'result': True, 'message': '성공적으로 이미지를 업로드하였습니다.', 'qrcode': img_base64, 'photo': photo}), 200
 
+@app.route("/download", methods=["GET"])
+def downloadQR():
+    session = request.args.get('session')
+    if not session:
+        return render_template("forbidden.html")
+    
+    photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
+
+    if not photoSession:
+        return render_template("forbidden.html")
+    
+    return render_template("download_qrcode.html", selected_photo=photoSession.photofile, qr_code=photoSession.qrfile)
+
 @app.route("/api/download", methods=["GET"])
 def download():
     session = request.args.get('session') # http://#DOMAIN/download?session={uuid}
