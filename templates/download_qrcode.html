@@ -74,9 +74,31 @@
         }
         if (countdown <= 0) {
           clearInterval(interval);
-          window.location.href = "http://localhost:8000";
+          window.location.href = "http://localhost:3000";
         }
       }, 1000);
+
+      // 👉 자동 다운로드 with 시간 기반 파일명
+      window.addEventListener("DOMContentLoaded", () => {
+        const photoElement = document.querySelector(".photo");
+        if (photoElement && photoElement.src.startsWith("data:image")) {
+          const now = new Date();
+          const pad = (n) => String(n).padStart(2, "0");
+
+          const hours = pad(now.getHours());
+          const minutes = pad(now.getMinutes());
+          const seconds = pad(now.getSeconds());
+
+          const filename = `${hours}-${minutes}-${seconds}.png`;
+
+          const link = document.createElement("a");
+          link.href = photoElement.src;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      });
     </script>
   </body>
 </html>

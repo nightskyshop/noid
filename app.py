@@ -1,49 +1,30 @@
-from flask import Flask, jsonify, request, render_template, send_file, make_response
+# CLIENT SIDE
+# 로컬에서 구동 [ 클라이언트 UI 인터페이스 ]
+
+from flask import Flask, render_template, request, jsonify, send_file
 from flask_cors import CORS
-from werkzeug.utils import secure_filename
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model import PhotoSession, Base #Base 추가함.
-import qrcode, io, base64, os, uuid, image
+import image
+import uuid, base64, qrcode, requests
 from PIL import Image
 from io import BytesIO
 
-
 app = Flask(__name__)
-CORS(app)
+CORS(app) # Cross Origin 정책 설정
 
-# 테이블 생성 코드 추가함. (이게 무슨 뻘짓이야 라고 생각되면 그냥 바로 삭제요망)
-engine = create_engine('sqlite:///db.db')
-Base.metadata.create_all(engine)
-Session = sessionmaker(bind=engine)
-db_session = Session()
-
-CRYPTION_TOKEN = "8krybwTfjJEIFq8J50CfEJlyFMlxYNl04pZDcgXKPz8pY3E362"
-
-@app.route("/cryption_device", methods=["GET"])
-def cryption_device():
-    password = request.args.get('password')
-    if password == "@noid!LifeFourCuts!AdminPassWORD!REGISTERdevice@":
-        resp = make_response("쿠키 설정됨")
-        resp.set_cookie('auth_token', CRYPTION_TOKEN, max_age=60*60*24*30)
-        return resp
-    else:
-        return render_template("forbidden.html")
-
-@app.route("/", methods=['GET'])
+@app.route("/", methods=["GET"])
 def index():
-    #if request.cookies.get('auth_token') != CRYPTION_TOKEN:
-    #    return render_template('forbidden.html')
-
-    return render_template('/index.html')
+    return render_template("index.html")
 
 @app.route("/frame", methods=['GET'])
 def frame():
-    return render_template('/frame.html')
+    return render_template('frame.html')
 
 @app.route("/noid_select", methods=['GET'])
 def noid_select():
-    return render_template('/noid_select.html')
+    return render_template('noid_select.html')
 
 @app.route("/noid_dankook_b", methods=['GET'])
 def noid_dankook_b():
@@ -53,13 +34,13 @@ def noid_dankook_b():
 def noid_dankook_w():
     return render_template('/noid_dankook_w.html')
 
-@app.route("/ddp_dwyl", methods=['GET'])
-def ddp_dwyl():
-    return render_template('/ddp_dwyl.html')
-
 @app.route("/ddp_select", methods=['GET'])
 def ddp_select():
     return render_template('/ddp_select.html')
+
+@app.route("/ddp_dwyl", methods=['GET'])
+def ddp_dwyl():
+    return render_template('/ddp_dwyl.html')
 
 @app.route("/ddp_seoul", methods=['GET'])
 def ddp_seoul():
@@ -93,6 +74,11 @@ def take_select_photo():
 def forbidden():
     return render_template('/forbidden.html')
 
+engine = create_engine('sqlite:///db.db')
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+db_session = Session()
+
 @app.route("/api/session", methods=['POST'])
 def createSession():
     try:
@@ -114,24 +100,19 @@ def createSession():
             db_session.close()
     except Exception as e:
         return jsonify({'result': False, 'message': '필수 파라미터가 누락되었습니다.'}), 400
-    
-    
 
 @app.route("/api/upload", methods=['POST'])
 def upload():
-    print(request.form)
-
     try:
         session = request.form['session']
     except Exception as e:
+
         return jsonify({'result': False, 'message': '필수 파라미터 session이 누락되었습니다.'}), 400
 
     photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
 
     if not photoSession:
         return jsonify({'result': False, 'message': '존재하지 않거나 마감된 세션입니다.'}), 400
-    
-    
 
     try:
         first = request.files['photo1']
@@ -163,10 +144,11 @@ def upload():
     try:
         photo = image.create(data, photoSession.frame, session)
     except Exception as e:
+        print(e)
         return jsonify({'result': False, 'message': f'이미지 처리 중 오류가 발생했습니다: {str(e)}'}), 400
 
-    qr = qrcode.make(f"https://localhost:3000/download?session={session}", border=4, box_size=20)
-    img_io = io.BytesIO()
+    qr = qrcode.make(f"http://download.noid.my/download?session={session}", border=4, box_size=20)
+    img_io = BytesIO()
     qr.save(img_io, 'PNG')
     img_io.seek(0)
     img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
@@ -176,6 +158,21 @@ def upload():
         photoSession.photofile = photo
 
     db_session.commit()
+
+    photo_bytes = base64.b64decode(photo)
+    files = {
+        'file': (f'{session}.png', BytesIO(photo_bytes), 'image/png')
+    }
+
+    try:
+        response = requests.post(
+            "http://download.noid.my/upload?password=8krybwTfjJEIFq8J50CfEJlyFMlxYNl04pZDcgXKPz8pY3E362",
+            files=files,
+            #verify=False  # HTTPS가 self-signed인 경우
+        )
+        print("업로드 서버 응답:", response.status_code, response.text)
+    except Exception as e:
+        print("업로드 서버 전송 오류:", str(e))
 
     return jsonify({'result': True, 'message': '성공적으로 이미지를 업로드하였습니다.', 'qrcode': img_base64, 'photo': photo}), 200
 
@@ -192,33 +189,4 @@ def downloadQR():
     
     return render_template("download_qrcode.html", selected_photo=photoSession.photofile, qr_code=photoSession.qrfile)
 
-@app.route("/api/download", methods=["GET"])
-def download():
-    session = request.args.get('session') # http://#DOMAIN/download?session={uuid}
-    if not session:
-        return render_template('forbidden.html')
-    
-    photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
-
-    if not photoSession:
-        return render_template('forbidden.html')
-    
-    return render_template('download.html', session=session, image_path=f'./download_image?session={session}')
-
-    
-@app.route('/api/download_image', methods=["GET"])
-def download_image():
-    session = request.args.get('session')
-    if not session:
-        return render_template('forbidden.html')
-    
-    photoSession = db_session.query(PhotoSession).filter(PhotoSession.id == session).first()
-
-    if not photoSession:
-        return render_template('forbidden.html')
-    
-    return send_file(f'./images/{session}.png', as_attachment=True)
-
-if __name__== "__main__":
-	app.debug = True
-	app.run(host="0.0.0.0", port=8000)
+app.run(port=3000, debug=True)
