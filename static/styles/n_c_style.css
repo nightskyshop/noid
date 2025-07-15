@@ -4,7 +4,7 @@
 }
 .div {
   background: #ffffff;
-  height: 982px;
+  height: 1080px;
   position: relative;
   overflow: hidden;
 }
@@ -59,27 +59,18 @@
   justify-content: flex-start;
 }
 .div4 {
-  width: 697px;
-  height: 482px;
+  width: 323.63px;
+  height: 479px;
   position: static;
 }
 .blue {
-  width: 323px;
+  width: 323.63px;
   height: 479px;
   position: absolute;
-  left: 781px;
-  top: 331px;
+  left: 798px;
+  top: 363px;
   object-fit: cover;
-  aspect-ratio: 323/479;
-}
-.green {
-  width: 323px;
-  height: 479px;
-  position: absolute;
-  left: 407px;
-  top: 328px;
-  object-fit: cover;
-  aspect-ratio: 323/479;
+  aspect-ratio: 323.63/479;
 }
 .select-page {
   position: absolute;
@@ -113,3 +104,4 @@
   align-items: center;
   justify-content: center;
 }
+

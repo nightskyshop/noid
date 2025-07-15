@@ -2,7 +2,8 @@
   background: #ffffff;
   display: flex;
   max-width: 1200px;
-  margin: 9em auto;
+  margin-top: 255px;
+  margin-left: 350px;
   justify-content: space-between;
 }
 .div2 {

@@ -4,7 +4,7 @@
 }
 .div {
   background: #ffffff;
-  height: 982px;
+  height: 1080px;
   position: relative;
   overflow: hidden;
 }
@@ -12,8 +12,8 @@
   width: 1125px;
   height: 712px;
   position: absolute;
-  left: 193px;
-  top: 135px;
+  left: 397px;
+  top: 184px;
 }
 .div3 {
   position: absolute;
@@ -49,10 +49,10 @@
   width: 166.59px;
   height: 246.57px;
   position: absolute;
-  left: 887.22px;
-  top: -44px;
+  left: 840.22px;
+  top: 0px;
   transform-origin: 0 0;
-  transform: rotate(41.76deg) scale(1, 1);
+  transform: rotate(25deg) scale(1, 1);
   object-fit: cover;
   aspect-ratio: 166.59/246.57;
 }
@@ -143,7 +143,7 @@
   position: absolute;
   left: 46px;
   top: 578px;
-  width: 200px;
+  width: 300px;
   height: 36px;
   display: flex;
   align-items: center;
@@ -172,22 +172,22 @@
   top: 56.32%;
 }
 .green {
-  width: 105px;
+  width: 105.4px;
   height: 156px;
   position: absolute;
   left: 909px;
   top: 462px;
   object-fit: cover;
-  aspect-ratio: 105/156;
+  aspect-ratio: 105.4/156;
 }
 .blue {
-  width: 106px;
+  width: 105.4px;
   height: 156px;
   position: absolute;
-  left: 984px;
-  top: 495px;
+  left: 965px;
+  top: 485px;
   object-fit: cover;
-  aspect-ratio: 106/156;
+  aspect-ratio: 105.4/156;
 }
 .div6 {
   color: #ffffff;
@@ -198,7 +198,7 @@
   position: absolute;
   left: 710px;
   top: 506px;
-  width: 174px;
+  width: 200px;
   height: 54px;
   display: flex;
   align-items: center;
@@ -207,7 +207,7 @@
 .original {
   color: #ffffff;
   text-align: left;
-  font-family: "Pretendard-Medium", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 36px;
   font-weight: 500;
   position: absolute;

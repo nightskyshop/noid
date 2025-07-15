@@ -4,7 +4,7 @@
 }
 .div {
   background: #ffffff;
-  height: 982px;
+  height: 1080px;
   position: relative;
   overflow: hidden;
 }
@@ -59,31 +59,31 @@
   justify-content: flex-start;
 }
 .div3 {
-  width: 697px;
-  height: 482px;
+  width: 771.44px;
+  height: 481px;
   position: static;
 }
 .dwyl {
-  width: 323px;
-  height: 479px;
+  width: 321.22px;
+  height: 475.44px;
   position: absolute;
-  left: 408px;
-  top: 325px;
+  left: 574px;
+  top: 360px;
   object-fit: cover;
-  aspect-ratio: 323/479;
+  aspect-ratio: 321.22/475.44;
 }
 .seoulddp {
-  width: 323px;
-  height: 479px;
+  width: 321.22px;
+  height: 475.44px;
   position: absolute;
-  left: 782px;
-  top: 328px;
+  left: 1024.22px;
+  top: 365.56px;
   object-fit: cover;
-  aspect-ratio: 323/479;
+  aspect-ratio: 321.22/475.44;
 }
 .select-page {
-  width: 166px;
-  height: 50.83px;
+  width: 210.79px;
+  height: 55.9px;
   position: static;
 }
 .rectangle-6 {
