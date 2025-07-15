@@ -1,104 +1,74 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>사진 보기</title>
-    <style>
-      .about {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 2.5rem;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>사진 보기</title>
+  <style>
+    .about {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
 
-      .notification-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: #3b82f6;
-        color: white;
-        text-align: center;
-        padding: 0.5rem;
-        font-weight: bold;
-      }
+    .notification-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #3b82f6;
+      color: white;
+      text-align: center;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
 
-      .photo {
-        width: 24rem;
-        height: auto;
-        object-fit: cover;
-        border-radius: 0.5rem;
-        border: 1px solid #ccc;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
+    .photo {
+      width: 24rem;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
 
-      .qr {
-        width: 8rem;
-        height: 8rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="about">
-      <div class="notification-bar" id="countdown-bar">
-        30초 후 자동으로 닫힙니다
-      </div>
-
-      {% if qr_code %}
-      <div class="mb-6">
-        <img
-          src="data:image/png;base64,{{ qr_code }}"
-          alt="QR Code"
-          class="qr"
-        />
-      </div>
-      {% endif %} {% if selected_photo %}
-      <div class="mb-6">
-        <img
-          src="data:image/png;base64,{{ selected_photo }}"
-          alt="Selected Photo"
-          class="photo"
-        />
-      </div>
-      {% endif %}
+    .qr {
+      width: 8rem;
+      height: 8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="about">
+    <div class="notification-bar" id="countdown-bar">30초 후 자동으로 닫힙니다</div>
+    
+    {% if qr_code %}
+    <div class="mb-6">
+      <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code" class="qr" />
     </div>
+    {% endif %}
 
-    <script>
-      let countdown = 30;
-      const countdownBar = document.getElementById("countdown-bar");
+    {% if selected_photo %}
+    <div class="mb-6">
+      <img src="data:image/png;base64,{{ selected_photo }}" alt="Selected Photo" class="photo" />
+    </div>
+    {% endif %}
+  </div>
 
-      const interval = setInterval(() => {
-        countdown--;
-        if (countdownBar) {
-          countdownBar.textContent = countdown + "초 후 자동으로 닫힙니다";
-        }
-        if (countdown <= 0) {
-          clearInterval(interval);
-          window.location.href = "http://localhost:3000";
-        }
-      }, 1000);
+  <script>
+    let countdown = 30;
+    const countdownBar = document.getElementById("countdown-bar");
 
-      // 👉 자동 다운로드 with 시간 기반 파일명
-      window.addEventListener("DOMContentLoaded", () => {
-        const photoElement = document.querySelector(".photo");
-        if (photoElement && photoElement.src.startsWith("data:image")) {
-          const now = new Date();
-          const pad = (n) => String(n).padStart(2, "0");
-
-          const hours = pad(now.getHours());
-          const minutes = pad(now.getMinutes());
-          const seconds = pad(now.getSeconds());
-
-          const filename = `${hours}-${minutes}-${seconds}.png`;
-
-          const link = document.createElement("a");
-          link.href = photoElement.src;
-          link.download = filename;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }
-      });
-    </script>
-  </body>
+    const interval = setInterval(() => {
+      countdown--;
+      if (countdownBar) {
+        countdownBar.textContent = countdown + "초 후 자동으로 닫힙니다";
+      }
+      if (countdown <= 0) {
+        clearInterval(interval);
+        window.location.href = "http://localhost:8000";
+      }
+    }, 1000);
+  </script>
+</body>
 </html>

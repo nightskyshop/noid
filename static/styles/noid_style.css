@@ -4,7 +4,7 @@
 }
 .div {
   background: #ffffff;
-  height: 982px;
+  height: 1080px;
   position: relative;
   overflow: hidden;
 }
@@ -59,31 +59,31 @@
   justify-content: flex-start;
 }
 .div4 {
-  width: 697px;
+  width: 779px;
   height: 481px;
   position: static;
 }
 .dankook-b {
-  width: 321px;
-  height: 475px;
+  width: 324.98px;
+  height: 481px;
   position: absolute;
-  left: 408px;
-  top: 324px;
+  left: 570px;
+  top: 333px;
   object-fit: cover;
-  aspect-ratio: 321/475;
+  aspect-ratio: 324.98/481;
 }
-.dankook-w {
-  width: 321px;
-  height: 475px;
+.dankook-n {
+  width: 324.98px;
+  height: 481px;
   position: absolute;
-  left: 784px;
-  top: 330px;
+  left: 1024.02px;
+  top: 333px;
   object-fit: cover;
-  aspect-ratio: 321/475;
+  aspect-ratio: 324.98/481;
 }
 .select-page {
-  width: 166px;
-  height: 50.83px;
+  width: 210.79px;
+  height: 55.9px;
   position: static;
 }
 .rectangle-6 {
@@ -114,3 +114,4 @@
   align-items: center;
   justify-content: center;
 }
+

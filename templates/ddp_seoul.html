@@ -78,7 +78,7 @@
           <div class="rectangle-6"></div>
           <div
             class="div3"
-            onclick="location.href='take_photo-1?frame=seoulddp'"
+            onclick="location.href='take_photo-1?frame=sjj_1'"
           >
             인쇄하기
           </div>
@@ -87,18 +87,37 @@
       <div class="div4">
         <div class="rectangle-3"></div>
         <img class="seoulddp2" src="{{ url_for('static',
-        filename="./img/seoulddp0.png") }}" />
+        filename="./img/sjj_1.png") }}" />
       </div>
       <div class="select-page">
         <div class="rectangle-62"></div>
         <div class="div5" onclick="location.href='ddp_select'">← 뒤로가기</div>
       </div>
       <div class="div6">
-        <div class="seoul-ddp">SEOUL DDP</div>
+        <div class="seoul-ddp">aT CENTER</div>
         <div class="_1" id="counter">1</div>
         <div class="div7" id="decrease">-</div>
         <div class="div8" id="increase">+</div>
       </div>
+      <script>
+        let count = 1;
+  
+        const counterEl = document.getElementById("counter");
+        const increaseBtn = document.getElementById("increase");
+        const decreaseBtn = document.getElementById("decrease");
+  
+        increaseBtn.addEventListener("click", () => {
+          count++;
+          counterEl.textContent = count;
+        });
+  
+        decreaseBtn.addEventListener("click", () => {
+          if (count > 0) {
+            count--;
+            counterEl.textContent = count;
+          }
+        });
+      </script>
     </div>
   </body>
 </html>

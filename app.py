@@ -1,15 +1,12 @@
-# CLIENT SIDE
-# 로컬에서 구동 [ 클라이언트 UI 인터페이스 ]
-
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, jsonify, request, render_template, send_file, make_response
 from flask_cors import CORS
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model import PhotoSession, Base #Base 추가함.
-import image
-import uuid, base64, qrcode, requests
+import qrcode, io, base64, os, uuid, image
 from PIL import Image
 from io import BytesIO
+
 
 app = Flask(__name__)
 CORS(app) # Cross Origin 정책 설정
@@ -30,9 +27,9 @@ def noid_select():
 def noid_dankook_b():
     return render_template('/noid_dankook_b.html')
 
-@app.route("/noid_dankook_w", methods=['GET'])
+@app.route("/noid_dankook_n", methods=['GET'])
 def noid_dankook_w():
-    return render_template('/noid_dankook_w.html')
+    return render_template('/noid_dankook_n.html')
 
 @app.route("/ddp_select", methods=['GET'])
 def ddp_select():

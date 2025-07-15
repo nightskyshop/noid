@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ url_for('static', filename="./styles/vars.css") }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename="./styles/index_style.css") }}">
-  
+  <link rel="stylesheet" href="{{ url_for('static', filename='./styles/vars.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='./styles/index_style.css') }}">
   
   <style>
+    /* 이 style 태그 내부의 CSS는 index_style.css로 옮기는 것을 권장합니다. */
+    /* 현재는 작동을 위해 여기에 두겠습니다. */
     @font-face {
         font-family: "Pretendard-Bold";
         font-style: normal;
@@ -41,60 +42,57 @@
         font-display: swap;
     }
 
-
-   a,
-   button,
-   input,
-   select,
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   * {
-       box-sizing: border-box;
-       margin: 0;
-       padding: 0;
-       border: none;
-       text-decoration: none;
-       background: none;
-   
-       -webkit-font-smoothing: antialiased;
-   }
-   
-   menu, ol, ul {
-       list-style-type: none;
-       margin: 0;
-       padding: 0;
-   }
-   </style>
-  <title>Document</title>
+    a,
+    button,
+    input,
+    select,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        text-decoration: none;
+        background: none;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    menu, ol, ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+  </style>
+  <title>단국네컷</title>
 </head>
 <body>
   <div class="div">
-    <div class="div2">
-      <div class="rectangle-1"></div>
-      <img class="dk-photo-1" src="{{ url_for('static', filename="./img/dk-photo-10.png") }}" />
-    </div>
-    <div class="div3">
-      <img class="blue" src="{{ url_for('static', filename='./img/blue0.png') }}" />
-      <img class="dankook-b" src="{{ url_for('static', filename='./img/dankook-b0.png') }}" />
-      <img class="dankook-w" src="{{ url_for('static', filename='./img/dankook-w0.png') }}" />
-      <img class="dwyl" src="{{ url_for('static', filename='./img/dwyl0.png') }}" />
-      <img class="green" src="{{ url_for('static', filename='./img/green0.png') }}" />
-      <img class="seoulddp" src="{{ url_for('static', filename='./img/seoulddp0.png') }}" />
-    </div>
-    <div class="_1">
-      <div class="rectangle-5"></div>
-      <div class="div4">단국네컷</div>
-      <div class="dksh-noid-four-cut">DKSH NOID FOUR CUT</div>
-      <button class="div5" onclick="location.href='frame'">시작하기 →</div>
-    </div>
-    <div class="div6">
-      <div class="make-your-4-cuts">MAKE YOUR 4CUTS</div>
-      <div class="_2025-ddp">2025 DDP</div>
-    </div>
-  </div>
-  
-</body>
+    <div class="content-wrapper">
+        <div class="div2">
+          <div class="rectangle-1"></div>
+          <img class="dk-photo-1" src="{{ url_for('static', filename='./img/dk-photo-10.png') }}" />
+        </div>
+        <div class="div3">
+          <img class="blue" src="{{ url_for('static', filename='./img/blue0.png') }}" />
+          <img class="dankook-b" src="{{ url_for('static', filename='./img/dankook_b.png') }}" />
+          <img class="dankook-w" src="{{ url_for('static', filename='./img/dankook_n.png') }}" />
+          <img class="dwyl" src="{{ url_for('static', filename='./img/sjj_1.png') }}" />
+          <img class="green" src="{{ url_for('static', filename='./img/sjj_2.png') }}" />
+          <img class="seoulddp" src="{{ url_for('static', filename='./img/dankook_mbti.png') }}" />
+        </div>
+        <div class="_1">
+          <div class="rectangle-5"></div>
+          <div class="div4">단국네컷</div>
+          <div class="dksh-noid-four-cut">DKSH NOID FOUR CUT</div>
+          <button class="div5" onclick="location.href='frame'">시작하기 →</button> 
+        </div> 
+        <div class="div6">
+          <div class="make-your-4-cuts">MAKE YOUR 4CUTS</div>
+          <div class="_2025-a-t">2025 aT CENTER</div>
+        </div>
+    </div> </div> </body>
 </html>

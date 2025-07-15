@@ -1,7 +1,17 @@
+/* -------------------------------------- */
+/* 기본 초기화 및 폰트 정의 (이 부분은 HTML의 style 태그와 중복되지만, 일단 여기에도 유지합니다.) */
+/* -------------------------------------- */
 @font-face {
   font-family: "Pretendard-Bold";
   font-style: normal;
   src: url("/static/fonts/Pretendard-Bold.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard-Thin";
+  font-style: normal;
+  src: url("/static/fonts/Pretendard-Thin.otf") format("opentype");
   font-display: swap;
 }
 
@@ -19,67 +29,108 @@
   font-display: swap;
 }
 
+/* 모든 요소에 box-sizing 적용 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  background: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+menu, ol, ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* -------------------------------------- */
+/* PC 환경 전체 화면 반응형 CSS 시작 */
+/* -------------------------------------- */
+
+/* 기준 디자인 해상도 (원본 디자인의 1514px x 982px) */
+:root {
+  --design-width-px: 1514;
+  --design-height-px: 982;
+  --design-aspect-ratio: calc(var(--design-width-px) / var(--design-height-px));
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* **가장 중요: 스크롤바 방지 및 전체 화면 꽉 채움** */
+  font-family: "Pretendard-Light", sans-serif;
+  color: #333;
+}
+
 .div,
 .div * {
   box-sizing: border-box;
 }
 .div {
   background: #ffffff;
-  height: 982px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 1080px;
   position: relative;
   overflow: hidden;
 }
 .div2 {
-  width: 1514px;
-  height: 982px;
-  position: absolute;
-  left: -1px;
-  top: 0px;
+  flex-shrink: 0;
+  width: 1920px;
+  height: 1080px;
+  position: relative;
 }
 .rectangle-1 {
   background: #353535;
-  width: 99.87%;
+  width: 100%;
   height: 27.6%;
   position: absolute;
-  right: 0.07%;
-  left: 0.07%;
   bottom: 0%;
   top: 72.4%;
 }
 .dk-photo-1 {
   width: 100%;
-  height: 711px;
+  height: 902.11px;
   position: absolute;
   right: 0%;
   left: 0%;
   top: 0px;
   object-fit: cover;
-  aspect-ratio: 1514/711;
+  aspect-ratio: 1920/902.11;
 }
 .div3 {
-  width: 1291.46px;
-  height: 535.88px;
+  flex-shrink: 0;
+  width: 1637px;
+  height: 589px;
   position: absolute;
-  left: 125px;
-  top: 65px;
+  left: 159px;
+  top: 72px;
 }
 .blue {
   opacity: 0.5;
   width: 17.81%;
-  height: 340.48px;
+  height: 431.58px;
   position: absolute;
   right: 71.97%;
   left: 10.22%;
-  top: 241.02px;
+  top: 271.79px;
   transform-origin: 0 0;
   transform: rotate(-30deg) scale(1, 1);
   object-fit: cover;
-  aspect-ratio: 230.04/340.48;
+  aspect-ratio: 291.58/431.58;
 }
 .dankook-b {
   opacity: 0.5;
   width: 17.81%;
-  height: 340.48px;
+  height: 431.58px;
   position: absolute;
   right: 42.06%;
   left: 40.13%;
@@ -87,25 +138,25 @@
   transform-origin: 0 0;
   transform: rotate(30deg) scale(1, 1);
   object-fit: cover;
-  aspect-ratio: 230.04/340.48;
+  aspect-ratio: 291.58/431.58;
 }
 .dankook-w {
   opacity: 0.6;
   width: 17.78%;
-  height: 339.81px;
+  height: 430.74px;
   position: absolute;
   right: 43.43%;
   left: 38.79%;
-  top: 206.79px;
+  top: 237.51px;
   transform-origin: 0 0;
   transform: rotate(-30deg) scale(1, 1);
   object-fit: cover;
-  aspect-ratio: 229.59/339.81;
+  aspect-ratio: 291.02/430.74;
 }
 .dwyl {
   opacity: 0.5;
   width: 17.81%;
-  height: 340.48px;
+  height: 431.58px;
   position: absolute;
   right: 11.86%;
   left: 70.33%;
@@ -113,12 +164,12 @@
   transform-origin: 0 0;
   transform: rotate(30deg) scale(1, 1);
   object-fit: cover;
-  aspect-ratio: 230.04/340.48;
+  aspect-ratio: 291.58/431.58;
 }
 .green {
   opacity: 0.5;
   width: 17.81%;
-  height: 340.48px;
+  height: 431.58px;
   position: absolute;
   right: 69.01%;
   left: 13.18%;
@@ -126,27 +177,28 @@
   transform-origin: 0 0;
   transform: rotate(30deg) scale(1, 1);
   object-fit: cover;
-  aspect-ratio: 230.04/340.48;
+  aspect-ratio: 291.58/431.58;
 }
 .seoulddp {
   opacity: 0.5;
   width: 17.81%;
-  height: 340.48px;
+  height: 431.58px;
   position: absolute;
   right: 10.8%;
   left: 71.39%;
-  top: 205.02px;
+  top: 235.79px;
   transform-origin: 0 0;
   transform: rotate(-30deg) scale(1, 1);
   object-fit: cover;
-  aspect-ratio: 230.04/340.48;
+  aspect-ratio: 291.58/431.58;
 }
 ._1 {
-  width: 341px;
-  height: 187px;
+  flex-shrink: 0;
+  width: 432px;
+  height: 206px;
   position: absolute;
-  left: 585px;
-  top: 764px;
+  left: 742px;
+  top: 840px;
 }
 .rectangle-5 {
   background: #ffffff;
@@ -208,11 +260,12 @@
   justify-content: center;
 }
 .div6 {
-  width: 1431px;
-  height: 661px;
+  flex-shrink: 0;
+  width: 1815px;
+  height: 726px;
   position: absolute;
-  left: 44px;
-  top: 35px;
+  left: 56px;
+  top: 39px;
 }
 .make-your-4-cuts {
   color: #000000;
@@ -231,7 +284,7 @@
   align-items: center;
   justify-content: center;
 }
-._2025-ddp {
+._2025-a-t {
   color: #000000;
   text-align: center;
   font-family: "Pretendard-Thin", sans-serif;
@@ -239,8 +292,8 @@
   font-weight: 100;
   position: absolute;
   right: 0%;
-  left: 74.42%;
-  width: 25.58%;
+  left: 62%;
+  width: 50%;
   bottom: 86.84%;
   top: 0%;
   height: 13.16%;
