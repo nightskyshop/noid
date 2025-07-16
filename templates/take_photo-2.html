@@ -279,7 +279,7 @@
         photosTaken++;
 
         if (photosTaken < 6) {
-          startCountdown(4, takePhoto);
+          startCountdown(8, takePhoto);
         } else {
           counter.innerText = "촬영 완료! 저장 중...";
           localStorage.setItem(
@@ -292,7 +292,7 @@
 
       // 5초 대기 후 시작
       setTimeout(() => {
-        startCountdown(4, takePhoto);
+        startCountdown(8, takePhoto);
 
         const formData = new FormData();
         formData.append("frame", "{{ request.args.get('frame') }}");
