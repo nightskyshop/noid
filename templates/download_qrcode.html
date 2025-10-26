@@ -1,74 +1,97 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>사진 보기</title>
-  <style>
-    .about {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 2.5rem;
-    }
-
-    .notification-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: #3b82f6;
-      color: white;
-      text-align: center;
-      padding: 0.5rem;
-      font-weight: bold;
-    }
-
-    .photo {
-      width: 24rem;
-      height: auto;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .qr {
-      width: 8rem;
-      height: 8rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="about">
-    <div class="notification-bar" id="countdown-bar">30초 후 자동으로 닫힙니다</div>
-    
-    {% if qr_code %}
-    <div class="mb-6">
-      <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code" class="qr" />
-    </div>
-    {% endif %}
-
-    {% if selected_photo %}
-    <div class="mb-6">
-      <img src="data:image/png;base64,{{ selected_photo }}" alt="Selected Photo" class="photo" />
-    </div>
-    {% endif %}
-  </div>
-
-  <script>
-    let countdown = 30;
-    const countdownBar = document.getElementById("countdown-bar");
-
-    const interval = setInterval(() => {
-      countdown--;
-      if (countdownBar) {
-        countdownBar.textContent = countdown + "초 후 자동으로 닫힙니다";
+  <head>
+    <meta charset="UTF-8" />
+    <title>사진 보기</title>
+    <style>
+      .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2.5rem;
       }
-      if (countdown <= 0) {
-        clearInterval(interval);
-        window.location.href = "http://localhost:8000";
+
+      .notification-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #3b82f6;
+        color: white;
+        text-align: center;
+        padding: 0.5rem;
+        font-weight: bold;
       }
-    }, 1000);
-  </script>
-</body>
+
+      .photo {
+        width: 24rem;
+        height: auto;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .qr {
+        width: 8rem;
+        height: 8rem;
+      }
+
+      .home-button {
+        all: unset;
+        text-decoration: none;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 2rem;
+        background-color: black;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="about">
+      <div class="notification-bar" id="countdown-bar">
+        30초 후 자동으로 닫힙니다
+      </div>
+
+      {% if qr_code %}
+      <div class="mb-6">
+        <img
+          src="data:image/png;base64,{{ qr_code }}"
+          alt="QR Code"
+          class="qr"
+        />
+      </div>
+      {% endif %} {% if selected_photo %}
+      <div class="mb-6">
+        <img
+          src="data:image/png;base64,{{ selected_photo }}"
+          alt="Selected Photo"
+          class="photo"
+        />
+      </div>
+      {% endif %}
+
+      <a href="/" class="home-button"> 홈으로 돌아가기 </a>
+    </div>
+
+    <script>
+      let countdown = 30;
+      const countdownBar = document.getElementById("countdown-bar");
+
+      const interval = setInterval(() => {
+        countdown--;
+        if (countdownBar) {
+          countdownBar.textContent = countdown + "초 후 자동으로 닫힙니다";
+        }
+        if (countdown <= 0) {
+          clearInterval(interval);
+          window.location.href = "/";
+        }
+      }, 1000);
+    </script>
+  </body>
 </html>
