@@ -6,6 +6,7 @@ from model import PhotoSession, Base #Base 추가함.
 import qrcode, io, base64, os, uuid, image
 from PIL import Image
 from io import BytesIO
+import requests
 
 
 app = Flask(__name__)

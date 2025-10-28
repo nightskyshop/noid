@@ -177,6 +177,12 @@
             console.log("formData: ", formData.get("session"));
             console.error("업로드 실패:", error);
             alert("업로드 중 오류가 발생했습니다.");
+            // 에러 발생 시 버튼 다시 활성화
+            document.querySelector(".div4").style.opacity = "1";
+            document.querySelector(".div4").style.filter = "none";
+            document.querySelector(".div4").style.pointerEvents = "auto";
+            document.querySelector(".div4").textContent = "사진뽑기 →";
+            isUploading = false;
           });
       };
 
@@ -218,7 +224,12 @@
         });
 
         // "사진 뽑기" 버튼 클릭 시
+        let isUploading = false;
         document.querySelector(".div4").addEventListener("click", () => {
+          if (isUploading) {
+            return; // 업로드 중이면 클릭 무시
+          }
+
           const selectedPhotos = Array.from(selectedIndexes).map(
             (idx) => photos[idx]
           );
@@ -226,6 +237,13 @@
             alert("정확히 4개의 사진을 선택해야 합니다.");
             return;
           }
+
+          isUploading = true; // 업로드 시작
+          document.querySelector(".div4").style.opacity = "0.5";
+          document.querySelector(".div4").style.filter = "grayscale(1)";
+          document.querySelector(".div4").style.pointerEvents = "none";
+          document.querySelector(".div4").textContent = "업로드중...";
+
           uploadSelectedPhotos(selectedPhotos); // 서버로 전송
         });
       });
